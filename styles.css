@@ -1,0 +1,45 @@
+.floor {
+  background-color: silver;
+  background-image: linear-gradient(335deg, #b00 23px, transparent 23px),
+    linear-gradient(155deg, #d00 23px, transparent 23px),
+    linear-gradient(335deg, #b00 23px, transparent 23px),
+    linear-gradient(155deg, #d00 23px, transparent 23px);
+  background-size: 58px 58px;
+  background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
+  width: 70px;
+  height: 110px;
+}
+.elevator {
+  width:25%;
+  background-color: #d00;
+  /* height: 10%; */
+  position:absolute;
+  bottom: 0;
+  transition: bottom 0.5s ease-in-out;
+}
+.elevator img {
+  width: 50px;
+  height: 60px;
+}
+.building {
+  display: flex;
+  flex-direction: row;
+  /* align-items:end; */
+  /* justify-content: flex-end; */
+  height: 100vh; /* גובה התצוגה האנכית */
+  width: 20%; /* רוחב התצוגה */
+  position: relative; /* הוצאה מההקשר של זרימת המסמך */
+}
+.floors {
+  display: flex; /* מצב הצגה גמיש המאפשר פריסה בשורה */
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: auto;
+}
+.elvSystem {
+  background-color: blue;
+  display: flex;
+  flex-direction: row; 
+  width: 100%;
+  /* bottom: 0; */
+}
