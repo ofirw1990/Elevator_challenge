@@ -37,4 +37,32 @@ class Elevator {
   public getIsAvailable() {
     return this.isAvailable;
   }
+
+  public moveToFloor(destinationFloor: number) {
+    this.isAvailable = false;
+
+    const delta = destinationFloor - this.currentFloor;
+
+    const currentBottom = parseInt(this.elevatorElement.style.bottom || "0");
+    const targetBottom = currentBottom + delta * 110;
+
+    let duration = Math.abs(delta) * 500;
+    this.elevatorElement.style.transition = `bottom ${
+      duration / 1000
+    }s ease-in-out`;
+    this.elevatorElement.style.bottom = `${targetBottom}px`;
+
+    setTimeout(() => {
+      console.log(`Elevator reached floor ${destinationFloor}`);
+      const audioElement = new Audio("./src/assets/ding.mp3");
+      audioElement.play();
+      this.currentFloor = destinationFloor;
+      this.elevatorElement.style.transition = "";
+    }, duration);
+
+    setTimeout(() => {
+      console.log("Elevator IsAvailable");
+      this.isAvailable = true;
+    }, duration + 2000);
+  }
 }

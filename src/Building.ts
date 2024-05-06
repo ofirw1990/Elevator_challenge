@@ -22,10 +22,6 @@ interface FloorButtonEvent {
       const floorsContainer = document.createElement('div');
       floorsContainer.classList.add('floors');
   
-      // Create DIV element for elevator system
-      //const elevatorsContainer = document.createElement('div');
-      //elevatorsContainer.classList.add('elevators');
-  
       this.floors.forEach(floor => {
         floorsContainer.appendChild(floor.getElement());
       });
