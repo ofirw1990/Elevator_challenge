@@ -1,8 +1,10 @@
 class Elevator {
   private elevatorElement: HTMLDivElement;
   private currentFloor: number;
+  private isAvailable: boolean
 
   constructor(floor: number) {
+    this.isAvailable = true
     this.currentFloor = floor;
     this.elevatorElement = document.createElement("div");
     this.elevatorElement.classList.add("elevator");
@@ -10,9 +12,6 @@ class Elevator {
     const imageElement = document.createElement("img");
     imageElement.src = "./src/assets/elv.png";
     imageElement.alt = "Elevator Image";
-
-    // imageElement.style.width = "50px"; // שינוי רוחב התמונה
-    // imageElement.style.height = "100px"; // שינוי גובה התמונה
 
     this.elevatorElement.appendChild(imageElement);
 
@@ -29,5 +28,9 @@ class Elevator {
 
   public setCurrentFloor(destinationFloor: number) {
     this.currentFloor = destinationFloor;
+  }
+
+  public setIsAvailable(newState:boolean) {
+    this.isAvailable = newState
   }
 }

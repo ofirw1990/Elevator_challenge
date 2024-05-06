@@ -12,10 +12,8 @@
 .elevator {
   width:25%;
   background-color: #d00;
-  /* height: 10%; */
   position:absolute;
   bottom: 0;
-  transition: bottom 0.5s ease-in-out;
 }
 .elevator img {
   width: 50px;
@@ -24,14 +22,12 @@
 .building {
   display: flex;
   flex-direction: row;
-  /* align-items:end; */
-  /* justify-content: flex-end; */
-  height: 100vh; /* גובה התצוגה האנכית */
-  width: 20%; /* רוחב התצוגה */
-  position: relative; /* הוצאה מההקשר של זרימת המסמך */
+  height: 100vh;
+  width: 20%;
+  position: relative;
 }
 .floors {
-  display: flex; /* מצב הצגה גמיש המאפשר פריסה בשורה */
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin-top: auto;
@@ -41,5 +37,4 @@
   display: flex;
   flex-direction: row; 
   width: 100%;
-  /* bottom: 0; */
 }
