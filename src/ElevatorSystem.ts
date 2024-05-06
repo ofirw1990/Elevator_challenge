@@ -22,7 +22,7 @@ class ElevatorSystem {
   }
 
   private moveElvToFloor(elvIndex: number, destinationFloor: number) {
-    this.elevators[elvIndex].setIsAvailable(false)
+    this.elevators[elvIndex].setIsAvailable(false);
     const currentFloor = this.elevators[elvIndex].getCurrentFloor();
     const delta = destinationFloor - currentFloor;
 
@@ -30,23 +30,22 @@ class ElevatorSystem {
     const currentBottom = parseInt(elvElement.style.bottom || "0");
     const targetBottom = currentBottom + delta * 110;
 
-    // Smooth animation of the elevator
-    let duration = Math.abs(delta) * 500; // Adjust duration based on floor difference
+    let duration = Math.abs(delta) * 500;
     elvElement.style.transition = `bottom ${duration / 1000}s ease-in-out`;
     elvElement.style.bottom = `${targetBottom}px`;
 
-    // Update the elevator's current floor after the animation finishes
     setTimeout(() => {
+      console.log(`Elevator reached floor ${destinationFloor}`);
+      const audioElement = new Audio("./src/assets/ding.mp3");
+      audioElement.play();
       this.elevators[elvIndex].setCurrentFloor(destinationFloor);
-      elvElement.style.transition = ""; // Remove transition after animation ends
+      elvElement.style.transition = ""; 
     }, duration);
 
-    // Delay at the destination floor
     setTimeout(() => {
-      // Additional actions to perform after the elevator reaches the destination floor
-      console.log(`Elevator reached floor ${destinationFloor}`);
-      this.elevators[elvIndex].setIsAvailable(true)
-    }, duration + 2000); // 2000ms (2 seconds) delay at the destination floor
+      console.log('Elevator IsAvailable');
+      this.elevators[elvIndex].setIsAvailable(true);
+    }, duration + 2000);
   }
 
   public getElement(): HTMLDivElement {

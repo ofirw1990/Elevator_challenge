@@ -1,10 +1,10 @@
 class Elevator {
   private elevatorElement: HTMLDivElement;
   private currentFloor: number;
-  private isAvailable: boolean
+  private isAvailable: boolean;
 
   constructor(floor: number) {
-    this.isAvailable = true
+    this.isAvailable = true;
     this.currentFloor = floor;
     this.elevatorElement = document.createElement("div");
     this.elevatorElement.classList.add("elevator");
@@ -30,7 +30,11 @@ class Elevator {
     this.currentFloor = destinationFloor;
   }
 
-  public setIsAvailable(newState:boolean) {
-    this.isAvailable = newState
+  public setIsAvailable(newState: boolean) {
+    this.isAvailable = newState;
+  }
+
+  public getIsAvailable() {
+    return this.isAvailable;
   }
 }
