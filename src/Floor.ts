@@ -40,19 +40,21 @@ class Floor {
     return parseInt(this.buttonElement.textContent || "0");
   }
   public updateTimer(timeLeft: number) {
-    this.timerElement.textContent = `Time left: ${timeLeft} seconds`;
-    console.log("timer:" + this.timer);
+    this.timerElement.textContent = timeLeft.toString();
     this.startTimer(timeLeft);
   }
 
   private startTimer(duration: number) {
-    if (duration <= 0) {
-      this.timerElement.textContent = ""; // אם הזמן הסתיים, אפס את התוכן של הטיימר
-      return;
-    }
-    this.timerElement.textContent = duration.toString(); // עדכן את הטיימר בכל קריאה לפונקציה
-    setTimeout(() => {
-      this.startTimer(duration - 1); // קריאה רקורסיבית לעצמה כל 1 שנייה עד שהזמן יגיע ל־0
+    let timer = duration;
+    const timerInterval = setInterval(() => {
+      if (timer <= 0) {
+        clearInterval(timerInterval);
+        this.timerElement.textContent = "";
+        return;
+      }
+      this.timerElement.textContent = timer.toString();
+      timer--;
     }, 1000);
   }
+  
 }
