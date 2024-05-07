@@ -16,6 +16,8 @@ class Elevator {
     this.elevatorElement.appendChild(imageElement);
 
     document.body.appendChild(this.elevatorElement);
+
+    this.elevatorElement.style.bottom = "0px"
   }
 
   public getElement(): HTMLDivElement {
@@ -44,6 +46,7 @@ class Elevator {
     const delta = destinationFloor - this.currentFloor;
 
     const currentBottom = parseInt(this.elevatorElement.style.bottom || "0");
+    console.log("currentBottom"+currentBottom)
     const targetBottom = currentBottom + delta * 110;
 
     let duration = Math.abs(delta) * 500;
@@ -53,7 +56,6 @@ class Elevator {
     this.elevatorElement.style.bottom = `${targetBottom}px`;
 
     setTimeout(() => {
-      console.log(`Elevator reached floor ${destinationFloor}`);
       const audioElement = new Audio("./src/assets/ding.mp3");
       audioElement.play();
       this.currentFloor = destinationFloor;
@@ -61,7 +63,6 @@ class Elevator {
     }, duration);
 
     setTimeout(() => {
-      console.log("Elevator IsAvailable");
       this.isAvailable = true;
     }, duration + 2000);
     return duration / 1000;

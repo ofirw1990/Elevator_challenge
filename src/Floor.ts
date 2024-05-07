@@ -11,7 +11,8 @@ class Floor {
     this.floorElement = document.createElement("div");
     this.floorElement.classList.add("floor");
     this.buttonElement = document.createElement("button");
-    this.buttonElement.classList.add("floor-button");
+    this.buttonElement.classList.add("metal");
+    this.buttonElement.classList.add("linear");
     this.buttonElement.textContent = floorNumber.toString();
 
     this.floorElement.appendChild(this.buttonElement);
@@ -45,7 +46,7 @@ class Floor {
   }
 
   private startTimer(duration: number) {
-    let timer = duration;
+    let timer = duration - 1;
     const timerInterval = setInterval(() => {
       if (timer <= 0) {
         clearInterval(timerInterval);
