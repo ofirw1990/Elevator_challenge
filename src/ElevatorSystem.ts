@@ -16,10 +16,11 @@ class ElevatorSystem {
     });
   }
 
-  public handleFloorRequest(eventData: FloorButtonEvent) {
+  public handleFloorRequest(eventData: FloorButtonEvent): number {
     console.log(`elevator to floor number:${eventData.floorNumber}`);
     const elevatorIndex = this.findClosestElevator(eventData.floorNumber);
-    this.elevators[elevatorIndex].moveToFloor(eventData.floorNumber);
+    const duration = this.elevators[elevatorIndex].moveToFloor(eventData.floorNumber);
+    return duration;
   }
 
   private findClosestElevator(floorNumber: number):number {

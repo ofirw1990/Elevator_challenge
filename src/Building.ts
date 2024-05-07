@@ -11,7 +11,8 @@ interface FloorButtonEvent {
       this.elvSystem = new ElevatorSystem(numElevators);
   
       const handleFloorRequest = (eventData: FloorButtonEvent) => {
-        this.elvSystem.handleFloorRequest(eventData);
+        const duration = this.elvSystem.handleFloorRequest(eventData);
+        this.updateFloorTimer(eventData.floorNumber, duration);
       };
   
       this.floors = Array.from({ length: numFloors }, (_, i) => new Floor(numFloors - i, handleFloorRequest));
@@ -30,5 +31,13 @@ interface FloorButtonEvent {
       buildingElement.appendChild(this.elvSystem.getElement());
 
       document.body.appendChild(buildingElement);
+    }
+
+    private updateFloorTimer(floorNumber: number, duration: number) {
+      const floor = this.floors.find(floor => floor.getFloorNumber() === floorNumber);
+      if (floor) {
+        const timer = Math.round(duration);
+        floor.updateTimer(timer);
+      }
     }
   }

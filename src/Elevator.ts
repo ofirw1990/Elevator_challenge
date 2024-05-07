@@ -38,7 +38,7 @@ class Elevator {
     return this.isAvailable;
   }
 
-  public moveToFloor(destinationFloor: number) {
+  public moveToFloor(destinationFloor: number):number {
     this.isAvailable = false;
 
     const delta = destinationFloor - this.currentFloor;
@@ -64,5 +64,6 @@ class Elevator {
       console.log("Elevator IsAvailable");
       this.isAvailable = true;
     }, duration + 2000);
+    return duration / 1000;
   }
 }
