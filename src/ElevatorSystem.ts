@@ -8,7 +8,7 @@ class ElevatorSystem {
 
     this.elevators = Array.from(
       { length: numElevator },
-      (_, i) => new Elevator(i + 1)
+      (_, i) => new Elevator()
     );
 
     this.elevators.forEach((elevator) => {
@@ -33,7 +33,6 @@ class ElevatorSystem {
         elevatorIndex = index
       }
     } 
-    console.log("elevatorIndex"+elevatorIndex)
     return elevatorIndex;
   }
 

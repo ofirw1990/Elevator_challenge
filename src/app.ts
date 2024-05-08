@@ -1,4 +1,11 @@
+const numOfBuildings = 1
+const numOfFloors = 7
+const numOfElevators = 4
 
-// const audioElement = new Audio("./src/assets/ding.mp3");
+let buildings = [];
 
-const b2 = new Building(7,4)
+
+for (let buildingIndex = 0; buildingIndex < numOfBuildings; buildingIndex++) {
+    const newBuilding = BuildingFactory.createBuilding(numOfFloors, numOfElevators);
+    buildings.push(newBuilding); 
+}  

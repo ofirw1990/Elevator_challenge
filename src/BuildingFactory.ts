@@ -1,7 +1,5 @@
-// import Building from './Building';
-
-// export class BuildingFactory {
-//   static createBuilding(numFloors: number): Building {
-//     return new Building(numFloors);
-//   }
-// }
+class BuildingFactory {
+  static createBuilding(numFloors: number, numElevators: number): Building {
+    return new Building(numFloors, numElevators);
+  }
+}

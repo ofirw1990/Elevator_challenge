@@ -3,7 +3,7 @@ class Floor {
   private buttonElement: HTMLButtonElement;
   private timerElement: HTMLDivElement;
   private timer: number;
-
+  
   constructor(
     floorNumber: number,
     private onButtonPressCallback: (eventData: FloorButtonEvent) => void
