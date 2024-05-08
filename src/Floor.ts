@@ -46,9 +46,12 @@ class Floor {
   }
 
   private startTimer(duration: number) {
+    this.buttonElement.style.color = "green";
+
     let timer = duration - 1;
     const timerInterval = setInterval(() => {
       if (timer <= 0) {
+        this.buttonElement.style.color = "";
         clearInterval(timerInterval);
         this.timerElement.textContent = "";
         return;
