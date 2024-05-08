@@ -2,10 +2,12 @@ class Elevator {
   private elevatorElement: HTMLDivElement;
   private currentFloor: number;
   private isAvailable: boolean;
+  private elevatorAvailabilityTime:number
 
   constructor(floor: number) {
+    this.elevatorAvailabilityTime = 0
     this.isAvailable = true;
-    this.currentFloor = floor;
+    this.currentFloor = 1;
     this.elevatorElement = document.createElement("div");
     this.elevatorElement.classList.add("elevator");
 
@@ -40,16 +42,27 @@ class Elevator {
     return this.isAvailable;
   }
 
+  public getArrivalTime(destinationFloor: number):number{
+    const delta = destinationFloor - this.currentFloor;
+    if(this.elevatorAvailabilityTime == 0) {
+      return Math.abs(delta) * 500
+    }
+  
+    let timeToBeAvailable = this.elevatorAvailabilityTime - Date.now();
+    return timeToBeAvailable + Math.abs(delta) * 500
+  }
+
   public moveToFloor(destinationFloor: number):number {
     this.isAvailable = false;
 
     const delta = destinationFloor - this.currentFloor;
-
     const currentBottom = parseInt(this.elevatorElement.style.bottom || "0");
-    console.log("currentBottom"+currentBottom)
+
+    let duration = Math.abs(delta) * 500
     const targetBottom = currentBottom + delta * 110;
 
-    let duration = Math.abs(delta) * 500;
+    this.elevatorAvailabilityTime = Date.now() + duration + 2000
+
     this.elevatorElement.style.transition = `bottom ${
       duration / 1000
     }s ease-in-out`;
@@ -59,11 +72,13 @@ class Elevator {
       const audioElement = new Audio("./src/assets/ding.mp3");
       audioElement.play();
       this.currentFloor = destinationFloor;
+
       this.elevatorElement.style.transition = "";
     }, duration);
 
     setTimeout(() => {
       this.isAvailable = true;
+      this.elevatorAvailabilityTime = 0
     }, duration + 2000);
     return duration / 1000;
   }
