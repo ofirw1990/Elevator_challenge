@@ -1,4 +1,4 @@
-const numOfBuildings = 1
+const numOfBuildings = 2
 const numOfFloors = 7
 const numOfElevators = 4
 
