@@ -3,9 +3,10 @@ class Floor {
   private buttonElement: HTMLButtonElement;
   private timerElement: HTMLDivElement;
   private timer: number;
-  
+
   constructor(
     floorNumber: number,
+    // Callback function to be executed when the floor button is pressed
     private onButtonPressCallback: (eventData: FloorButtonEvent) => void
   ) {
     this.floorElement = document.createElement("div");
@@ -25,6 +26,7 @@ class Floor {
 
     document.body.appendChild(this.floorElement);
 
+    // Add event listener to the button for floor press
     this.buttonElement.addEventListener("click", () => {
       const eventData: FloorButtonEvent = {
         floorNumber: floorNumber,
@@ -45,6 +47,7 @@ class Floor {
     this.startTimer(timeLeft);
   }
 
+  // Starts a timer countdown to visually represent the remaining waiting time
   private startTimer(duration: number) {
     this.buttonElement.style.color = "green";
 
@@ -60,5 +63,4 @@ class Floor {
       timer--;
     }, 1000);
   }
-  
 }
