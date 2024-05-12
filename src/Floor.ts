@@ -44,10 +44,6 @@ class Floor {
     return this.floorElement;
   }
 
-  public changeButtonStatus() {
-    this.isLocked = !this.isLocked;
-  }
-
   public getFloorNumber() {
     return parseInt(this.buttonElement.textContent || "0");
   }

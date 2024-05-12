@@ -1,7 +1,6 @@
-const numOfBuildings = 1
+const numOfBuildings = 6
 const numOfFloors = 7
-const numOfElevators = 1
-
+const numOfElevators = 6
 let buildings = [];
 
 
