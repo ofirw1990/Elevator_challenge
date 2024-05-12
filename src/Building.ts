@@ -13,6 +13,7 @@ class Building {
 
     // Callback function to handle floor button press events
     const handleFloorRequest = (eventData: FloorButtonEvent) => {
+      
       const duration = this.elvSystem.handleFloorRequest(eventData);
       this.updateFloorTimer(eventData.floorNumber, duration);
     };

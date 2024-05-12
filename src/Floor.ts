@@ -3,12 +3,14 @@ class Floor {
   private buttonElement: HTMLButtonElement;
   private timerElement: HTMLDivElement;
   private timer: number;
+  private isLocked: boolean;
 
   constructor(
     floorNumber: number,
     // Callback function to be executed when the floor button is pressed
     private onButtonPressCallback: (eventData: FloorButtonEvent) => void
   ) {
+    this.isLocked = false;
     this.floorElement = document.createElement("div");
     this.floorElement.classList.add("floor");
     this.buttonElement = document.createElement("button");
@@ -28,15 +30,22 @@ class Floor {
 
     // Add event listener to the button for floor press
     this.buttonElement.addEventListener("click", () => {
-      const eventData: FloorButtonEvent = {
-        floorNumber: floorNumber,
-      };
-      this.onButtonPressCallback(eventData);
+      if (!this.isLocked) {
+        const eventData: FloorButtonEvent = {
+          floorNumber: floorNumber,
+        };
+        this.onButtonPressCallback(eventData);
+        this.isLocked = true;
+      }
     });
   }
 
   public getElement(): HTMLDivElement {
     return this.floorElement;
+  }
+
+  public changeButtonStatus() {
+    this.isLocked = !this.isLocked;
   }
 
   public getFloorNumber() {
@@ -54,6 +63,7 @@ class Floor {
     let timer = duration - 1;
     const timerInterval = setInterval(() => {
       if (timer <= 0) {
+        this.isLocked = false;
         this.buttonElement.style.color = "";
         clearInterval(timerInterval);
         this.timerElement.textContent = "";

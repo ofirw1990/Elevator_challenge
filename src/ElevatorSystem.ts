@@ -21,9 +21,9 @@ class ElevatorSystem {
     const elevatorData = this.findClosestElevator(eventData.floorNumber);
     const elevatorIndex = elevatorData[0];
     const minimumTime = elevatorData[1];
-    this.elevators[elevatorIndex].addTask(eventData.floorNumber);
+    this.elevators[elevatorIndex].addTask(eventData.floorNumber,minimumTime + 2000);
 
-    return minimumTime / 1000;
+    return minimumTime  / 1000;
   }
 
   private findClosestElevator(destinationFloor: number): number[] {
