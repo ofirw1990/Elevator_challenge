@@ -16,21 +16,22 @@ class ElevatorSystem {
     });
   }
 
-  // Handles a floor button press event, assigns the task to the closest available elevator, and returns the estimated arrival time in seconds
+  // Handles a floor button press event, assigns the task to the closest available elevator,
+  //and returns the estimated arrival time in seconds
   public handleFloorRequest(eventData: FloorButtonEvent): number {
-    const elevatorData = this.findClosestElevator(eventData.floorNumber);
-    const elevatorIndex = elevatorData[0];
-    const minimumTime = elevatorData[1];
-    this.elevators[elevatorIndex].addTask(eventData.floorNumber,minimumTime + 2000);
+    const elevatorIndex = this.findClosestElevator(eventData.floorNumber);
+    const availabilityTime = this.elevators[elevatorIndex].addTask(
+      eventData.floorNumber
+    );
 
-    return minimumTime / 1000;
+    return availabilityTime - 2000;
   }
 
-  private findClosestElevator(destinationFloor: number): number[] {
+  private findClosestElevator(destinationFloor: number): number {
     // Check if any elevator is already on the requested floor
     for (let index = 0; index < this.elevators.length; index++) {
       if (this.elevators[index].getCurrentFloor() == destinationFloor) {
-        return [index, 0];
+        return index;
       }
     }
     let minimumTime = this.elevators[0].getArrivalTime(destinationFloor);
@@ -43,7 +44,7 @@ class ElevatorSystem {
         elevatorIndex = index;
       }
     }
-    return [elevatorIndex, minimumTime];
+    return elevatorIndex;
   }
 
   public getElement(): HTMLDivElement {

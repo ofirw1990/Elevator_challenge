@@ -14,8 +14,8 @@ class Building {
 
     // Callback function to handle floor button press events
     const handleFloorRequest = (eventData: FloorButtonEvent) => {
-      const duration = this.elvSystem.handleFloorRequest(eventData);
-      this.updateFloorTimer(eventData.floorNumber, duration);
+      const arrivalTime = this.elvSystem.handleFloorRequest(eventData);
+      this.updateFloorTimer(eventData.floorNumber, arrivalTime);
     };
 
     // Create floors with floor numbers counting down from the top floor
@@ -38,17 +38,11 @@ class Building {
     this.buildingElement.appendChild(this.elvSystem.getElement());
   }
   public getBuildingElement(): HTMLDivElement {
-    return this.buildingElement
+    return this.buildingElement;
   }
 
-  private updateFloorTimer(floorNumber: number, duration: number) {
-    // Find the floor object that matches the requested floor number
-    const floor = this.floors.find(
-      (floor) => floor.getFloorNumber() === floorNumber
-    );
-    if (floor) {
-      const timer = Math.round(duration);
-      floor.updateTimer(timer);
-    }
+  private updateFloorTimer(floorNumber: number, arrivalTime: number) {
+    const timer = Math.round((arrivalTime - Date.now()) / 1000);
+    this.floors[this.floors.length - floorNumber].startTimer(timer);
   }
 }

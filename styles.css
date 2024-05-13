@@ -1,3 +1,8 @@
+.timerArea {
+  background-color: aqua;
+  width: 100px;
+  height: 800px;
+}
 .buildings {
   display: flex;
   flex-direction: row;
@@ -65,6 +70,7 @@
   color: blue;
   display: flex;
   align-items: center;
+  width: 10%;
 }
 .metal {
   position: relative;

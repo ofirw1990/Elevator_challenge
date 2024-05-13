@@ -47,26 +47,35 @@ class Floor {
   public getFloorNumber() {
     return parseInt(this.buttonElement.textContent || "0");
   }
-  public updateTimer(timeLeft: number) {
-    this.timerElement.textContent = timeLeft.toString();
-    this.startTimer(timeLeft);
-  }
 
   // Starts a timer countdown to visually represent the remaining waiting time
-  private startTimer(duration: number) {
+  public startTimer(timer: number) {
     this.buttonElement.style.color = "green";
+    let timeLeft = timer - 1;
 
-    let timer = duration - 1;
-    const timerInterval = setInterval(() => {
-      if (timer <= 0) {
+    // Use setTimeout for immediate (slightly delayed) update
+    setTimeout(() => {
+      if (timeLeft < 0) {
         this.isLocked = false;
         this.buttonElement.style.color = "";
         clearInterval(timerInterval);
         this.timerElement.textContent = "";
         return;
       }
-      this.timerElement.textContent = timer.toString();
-      timer--;
+      this.timerElement.textContent = timeLeft.toString();
+      timeLeft--;
+    }, 10);
+
+    const timerInterval = setInterval(() => {
+      if (timeLeft < 0) {
+        this.isLocked = false;
+        this.buttonElement.style.color = "";
+        clearInterval(timerInterval);
+        this.timerElement.textContent = "";
+        return;
+      }
+      this.timerElement.textContent = timeLeft.toString();
+      timeLeft--;
     }, 1000);
   }
 }
