@@ -1,7 +1,6 @@
-body {
+.buildings {
   display: flex;
   flex-direction: row;
-  overflow-x: scroll;
 }
 .floor:first-child {
   background-color: silver;
@@ -34,7 +33,6 @@ body {
   position: relative;
   margin: 10px;
   align-items: flex-end;
-  bottom: 0;
 }
 .elevator img {
   width: 50px;
@@ -43,10 +41,11 @@ body {
 .building {
   display: flex;
   flex-direction: row;
-  height: 100vh;
   width: auto;
   position: relative;
-  height: 100%;
+  height: 100;
+  bottom: 0;
+  flex-grow: 1;
 }
 .floors {
   display: flex;

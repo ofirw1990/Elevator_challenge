@@ -4,6 +4,7 @@ interface FloorButtonEvent {
 }
 
 class Building {
+  private buildingElement: HTMLDivElement;
   private floors: Floor[];
   private elvSystem: ElevatorSystem;
 
@@ -23,8 +24,8 @@ class Building {
       (_, i) => new Floor(numFloors - i, handleFloorRequest)
     );
 
-    const buildingElement = document.createElement("div");
-    buildingElement.classList.add("building");
+    this.buildingElement = document.createElement("div");
+    this.buildingElement.classList.add("building");
 
     const floorsContainer = document.createElement("div");
     floorsContainer.classList.add("floors");
@@ -33,10 +34,11 @@ class Building {
       floorsContainer.appendChild(floor.getElement());
     });
 
-    buildingElement.appendChild(floorsContainer);
-    buildingElement.appendChild(this.elvSystem.getElement());
-
-    document.body.appendChild(buildingElement);
+    this.buildingElement.appendChild(floorsContainer);
+    this.buildingElement.appendChild(this.elvSystem.getElement());
+  }
+  public getBuildingElement(): HTMLDivElement {
+    return this.buildingElement
   }
 
   private updateFloorTimer(floorNumber: number, duration: number) {

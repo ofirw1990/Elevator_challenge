@@ -1,10 +1,15 @@
 const numOfBuildings = 6
-const numOfFloors = 7
-const numOfElevators = 6
-let buildings = [];
+const numOfFloors = 12
+const numOfElevators = 5
+
+const buildingsElement = document.createElement("div");
+buildingsElement.classList.add("buildings");
 
 
 for (let buildingIndex = 0; buildingIndex < numOfBuildings; buildingIndex++) {
     const newBuilding = BuildingFactory.createBuilding(numOfFloors, numOfElevators);
-    buildings.push(newBuilding); 
+    buildingsElement.appendChild(newBuilding.getBuildingElement()); 
 }  
+
+document.body.appendChild(buildingsElement);
+
