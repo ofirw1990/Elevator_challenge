@@ -49,9 +49,9 @@ class Floor {
   }
 
   // Starts a timer countdown to visually represent the remaining waiting time
-  public startTimer(timer: number) {
+  public startTimer(arrivalTime: number) {
     this.buttonElement.style.color = "green";
-    let timeLeft = timer - 1;
+    let timeLeft = Math.round((arrivalTime - Date.now()) / 1000);
 
     // Use setTimeout for immediate (slightly delayed) update
     setTimeout(() => {

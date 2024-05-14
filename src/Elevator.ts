@@ -3,7 +3,7 @@ class Elevator {
   private currentFloor: number;
   private availabilityTime: number; //Date.now() + the time remaining until the elevator is free
   private isAvailable: boolean;
-  private taskList: number[];
+  public taskList: number[];
 
   constructor() {
     this.taskList = [];
@@ -76,12 +76,10 @@ class Elevator {
     let duration = Math.abs(delta) * 500;
     const targetBottom = currentBottom + delta * 110;
 
-    setTimeout(() => {
-      this.elevatorElement.style.transition = `bottom ${
-        duration  / 1000
-      }s ease-in-out`;
-      this.elevatorElement.style.bottom = `${targetBottom}px`;
-    }, 100);
+    this.elevatorElement.style.transition = `bottom ${
+      duration / 1000
+    }s ease-in-out`;
+    this.elevatorElement.style.bottom = `${targetBottom}px`;
 
     this.currentFloor = destinationFloor;
     setTimeout(() => {

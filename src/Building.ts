@@ -42,7 +42,6 @@ class Building {
   }
 
   private updateFloorTimer(floorNumber: number, arrivalTime: number) {
-    const timer = Math.round((arrivalTime - Date.now()) / 1000);
-    this.floors[this.floors.length - floorNumber].startTimer(timer);
+    this.floors[this.floors.length - floorNumber].startTimer(arrivalTime);
   }
 }
