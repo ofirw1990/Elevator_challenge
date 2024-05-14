@@ -9,6 +9,18 @@ class Building {
   private elvSystem: ElevatorSystem;
 
   constructor(numFloors: number, numElevators: number) {
+    // Check for non-integer or negative values
+    if (
+      numFloors <= 0 ||
+      !Number.isInteger(numFloors) ||
+      numElevators <= 0 ||
+      !Number.isInteger(numElevators)
+    ) {
+      throw new Error(
+        "Invalid number of floors or elevators. Both must be positive integers."
+      );
+    }
+
     // Create the elevator system with the specified number of elevators
     this.elvSystem = ElevatorSystemFactory.createElevatorSystem(numElevators);
 
