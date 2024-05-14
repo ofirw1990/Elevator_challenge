@@ -37,6 +37,7 @@ class Building {
     this.buildingElement.appendChild(floorsContainer);
     this.buildingElement.appendChild(this.elvSystem.getElement());
   }
+
   public getBuildingElement(): HTMLDivElement {
     return this.buildingElement;
   }

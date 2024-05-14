@@ -3,7 +3,7 @@ class Elevator {
   private currentFloor: number;
   private availabilityTime: number; //Date.now() + the time remaining until the elevator is free
   private isAvailable: boolean;
-  public taskList: number[];
+  private taskList: number[];
 
   constructor() {
     this.taskList = [];
@@ -32,6 +32,21 @@ class Elevator {
     return this.currentFloor;
   }
 
+  public getTaskListLength(): number {
+    return this.taskList.length;
+  }
+
+  // Estimates the time it takes for the elevator to reach a specific floor
+  public getArrivalTime(destinationFloor: number): number {
+    const delta = destinationFloor - this.currentFloor;
+    if (this.isAvailable) {
+      return Math.abs(delta) * 500;
+    }
+
+    let timeToBeAvailable = this.availabilityTime - Date.now();
+    return timeToBeAvailable + Math.abs(delta) * 500; //The remaining time until the elevator is free + new travel time
+  }
+
   // Adds a floor request to the elevator's task list and checks
   // if the elevator is available to complete it immediately
   public addTask(floorNumber: number): number {
@@ -57,19 +72,8 @@ class Elevator {
     }
   }
 
-  // Estimates the time it takes for the elevator to reach a specific floor
-  public getArrivalTime(destinationFloor: number): number {
-    const delta = destinationFloor - this.currentFloor;
-    if (this.isAvailable) {
-      return Math.abs(delta) * 500;
-    }
-
-    let timeToBeAvailable = this.availabilityTime - Date.now();
-    return timeToBeAvailable + Math.abs(delta) * 500; //The remaining time until the elevator is free + new travel time
-  }
-
   // Moves the elevator to a requested floor and updates the UI
-  public moveToFloor(destinationFloor: number) {
+  private moveToFloor(destinationFloor: number) {
     const delta = destinationFloor - this.currentFloor;
     const currentBottom = parseInt(this.elevatorElement.style.bottom || "0");
 

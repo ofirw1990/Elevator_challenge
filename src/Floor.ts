@@ -1,9 +1,9 @@
 class Floor {
+  private isLocked: boolean;
   private floorElement: HTMLDivElement;
   private buttonElement: HTMLButtonElement;
   private timerElement: HTMLDivElement;
   private timer: number;
-  private isLocked: boolean;
 
   constructor(
     floorNumber: number,
@@ -11,8 +11,10 @@ class Floor {
     private onButtonPressCallback: (eventData: FloorButtonEvent) => void
   ) {
     this.isLocked = false;
+
     this.floorElement = document.createElement("div");
     this.floorElement.classList.add("floor");
+
     this.buttonElement = document.createElement("button");
     this.buttonElement.classList.add("metal");
     this.buttonElement.classList.add("linear");
@@ -58,8 +60,8 @@ class Floor {
       if (timeLeft < 0) {
         this.isLocked = false;
         this.buttonElement.style.color = "";
-        clearInterval(timerInterval);
         this.timerElement.textContent = "";
+        clearInterval(timerInterval);
         return;
       }
       this.timerElement.textContent = timeLeft.toString();
@@ -70,8 +72,8 @@ class Floor {
       if (timeLeft < 0) {
         this.isLocked = false;
         this.buttonElement.style.color = "";
-        clearInterval(timerInterval);
         this.timerElement.textContent = "";
+        clearInterval(timerInterval);
         return;
       }
       this.timerElement.textContent = timeLeft.toString();

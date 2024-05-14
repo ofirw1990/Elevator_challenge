@@ -5,15 +5,11 @@ interface BuildingData {
 
 const buildingsData: BuildingData[] = [
   {
-    numOfFloors: 7,
-    numOfElevators: 1,
+    numOfFloors: 9,
+    numOfElevators:3,
   },
   {
     numOfFloors: 5,
-    numOfElevators: 4,
-  },
-  {
-    numOfFloors: 2,
-    numOfElevators: 5,
+    numOfElevators: 3,
   },
 ];
