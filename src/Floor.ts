@@ -25,7 +25,7 @@ class Floor {
     this.timerElement = document.createElement("div");
     this.timerElement.classList.add("timer");
     this.timer = 0;
-    this.timerElement.textContent = this.timer > 0 ? this.timer.toString() : "";
+    this.timerElement.textContent = "";
     this.floorElement.appendChild(this.timerElement);
 
     document.body.appendChild(this.floorElement);
@@ -36,8 +36,8 @@ class Floor {
         const eventData: FloorButtonEvent = {
           floorNumber: floorNumber,
         };
-        this.onButtonPressCallback(eventData);
         this.isLocked = true;
+        this.onButtonPressCallback(eventData);
       }
     });
   }

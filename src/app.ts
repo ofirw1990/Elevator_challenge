@@ -17,6 +17,9 @@ try {
   }
 
   document.body.appendChild(buildingsElement);
+  window.onload = function () {
+    window.scrollTo(0, document.body.scrollHeight);
+  };
 } catch (error) {
   console.error("Error creating buildings:", error);
 }

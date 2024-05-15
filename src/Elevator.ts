@@ -16,12 +16,10 @@ class Elevator {
     const imageElement = document.createElement("img");
     imageElement.src = "./src/assets/elv.png";
     imageElement.alt = "Elevator Image";
+    this.elevatorElement.style.bottom = "0px";
 
     this.elevatorElement.appendChild(imageElement);
-
     document.body.appendChild(this.elevatorElement);
-
-    this.elevatorElement.style.bottom = "0px";
   }
 
   public getElement(): HTMLDivElement {
