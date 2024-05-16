@@ -27,9 +27,8 @@ class ElevatorSystem {
     const availabilityTime = this.elevators[elevatorIndex].addTask(
       eventData.floorNumber
     );
-    const taskLength = this.elevators[elevatorIndex].getTaskListLength();
-    const deviation = 300 * taskLength * taskLength;
-    return availabilityTime - 2000 - deviation;
+    
+    return availabilityTime - 2000
   }
 
   private findClosestElevator(destinationFloor: number): number {
