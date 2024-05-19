@@ -53,7 +53,7 @@ class Floor {
   // Starts a timer countdown to visually represent the remaining waiting time
   public startTimer(arrivalTime: number) {
     this.buttonElement.style.color = "green";
-    let timeLeft = Math.round((arrivalTime - Date.now()) / 1000);
+    let timeLeft = this.roundToHalves((arrivalTime - Date.now()) / 1000);
 
     // Use setTimeout for immediate (slightly delayed) update
     setTimeout(() => {
@@ -65,7 +65,7 @@ class Floor {
         return;
       }
       this.timerElement.textContent = timeLeft.toString();
-      timeLeft--;
+      timeLeft -= 0.5;
     }, 10);
 
     const timerInterval = setInterval(() => {
@@ -77,7 +77,23 @@ class Floor {
         return;
       }
       this.timerElement.textContent = timeLeft.toString();
-      timeLeft--;
-    }, 1000);
+      timeLeft -= 0.5;
+    }, 500);
+  }
+
+  public roundToHalves(num: number): number {
+    // קבלת החלק השלם של המספר
+    const wholePart = Math.floor(num);
+    // קבלת החלק השברי של המספר
+    const decimalPart = num - wholePart;
+
+    // לוגיקת עיגול לפי החלק השברי
+    if (decimalPart <= 0.3) {
+      return wholePart;
+    } else if (decimalPart <= 0.7) {
+      return wholePart + 0.5;
+    } else {
+      return wholePart + 1;
+    }
   }
 }

@@ -12,4 +12,12 @@ const buildingsData: BuildingData[] = [
     numOfFloors: 5,
     numOfElevators: 3,
   },
+  {
+    numOfFloors: 10,
+    numOfElevators:4,
+  },
+  {
+    numOfFloors: 5,
+    numOfElevators: 3,
+  },
 ];

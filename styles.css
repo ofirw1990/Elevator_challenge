@@ -12,6 +12,7 @@ body {
 .building {
   display: flex;
   flex-direction: row;
+  margin-left: 3%;
 }
 .floor:first-child {
   background-color: silver;
@@ -59,10 +60,11 @@ body {
   width: auto;
   align-items: flex-end;
   bottom: 0;
+  margin-left: 3%;
 }
 .timer {
   font-size: 2em;
-  color: blue;
+  color:black;
   display: flex;
   align-items: center;
   width: 10%;

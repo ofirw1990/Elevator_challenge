@@ -24,11 +24,11 @@ class ElevatorSystem {
   // and returns the estimated arrival time in seconds
   public handleFloorRequest(eventData: FloorButtonEvent): number {
     const elevatorIndex = this.findClosestElevator(eventData.floorNumber);
-    const availabilityTime = this.elevators[elevatorIndex].addTask(
+    const arrivalTime = this.elevators[elevatorIndex].addTask(
       eventData.floorNumber
     );
     
-    return availabilityTime - 2000
+    return arrivalTime;
   }
 
   private findClosestElevator(destinationFloor: number): number {

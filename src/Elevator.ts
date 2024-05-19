@@ -36,34 +36,42 @@ class Elevator {
 
   // Estimates the time it takes for the elevator to reach a specific floor
   public getArrivalTime(destinationFloor: number): number {
-    const delta = destinationFloor - this.currentFloor;
     if (this.isAvailable) {
+      const delta = destinationFloor - this.currentFloor;
       return Math.abs(delta) * 500;
     }
 
+    //Distance between new destination floor and last destination floor in taskList
+    const delta = Math.abs(
+      destinationFloor - this.taskList[this.taskList.length - 1]
+    );
+    const travelTime = delta * 500;
     let timeToBeAvailable = this.availabilityTime - Date.now();
-    return timeToBeAvailable + Math.abs(delta) * 500; //The remaining time until the elevator is free + new travel time
+    return timeToBeAvailable + travelTime;
   }
 
   // Adds a floor request to the elevator's task list and checks
   // if the elevator is available to complete it immediately
   public addTask(floorNumber: number): number {
     if (this.taskList.indexOf(floorNumber) === -1) {
-      this.taskList.push(floorNumber);
       this.availabilityTime =
         Date.now() + this.getArrivalTime(floorNumber) + 2000;
+      this.taskList.push(floorNumber);
+
       if (this.isAvailable) {
         this.completingTask();
       }
     }
-    return this.availabilityTime;
+    return this.availabilityTime - 2000;
   }
 
   // Attempts to complete the first task in the list if the elevator is available
   private completingTask() {
-    if (this.taskList.length > 0) {
-      const destinationFloor = this.taskList.shift();
-      if (typeof destinationFloor === "number" && this.isAvailable) {
+    if (this.taskList.length === 0) {
+      this.isAvailable = true;
+    } else {
+      const destinationFloor = this.taskList[0];
+      if (typeof destinationFloor === "number") {
         this.isAvailable = false;
         this.moveToFloor(destinationFloor);
       }
@@ -92,7 +100,7 @@ class Elevator {
     }, duration);
 
     setTimeout(() => {
-      this.isAvailable = true;
+      this.taskList.shift();
       this.completingTask();
     }, duration + 2000);
   }
